@@ -7,7 +7,6 @@ pipeline {
       }
     }
     stage('Test') {
-     
       post {
         always {
           junit 'test-reports/results.xml'
@@ -20,7 +19,6 @@ pipeline {
       }
     }
     stage('Deliver') {
-     
       post {
         success {
           archiveArtifacts 'dist/add2vals'
