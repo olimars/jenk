@@ -7,12 +7,7 @@ pipeline {
       }
     }
     stage('Test') {
-      agent {
-        docker {
-          image 'qnib/pytest'
-        }
-
-      }
+     
       post {
         always {
           junit 'test-reports/results.xml'
@@ -25,12 +20,7 @@ pipeline {
       }
     }
     stage('Deliver') {
-      agent {
-        docker {
-          image 'cdrx/pyinstaller-linux:python2'
-        }
-
-      }
+     
       post {
         success {
           archiveArtifacts 'dist/add2vals'
