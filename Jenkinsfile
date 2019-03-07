@@ -1,52 +1,17 @@
 pipeline {
-  agent none
-  stages {
-    stage('Build') {
-      agent {
-        docker {
-          image 'python:2-alpine'
-        }
+    agent any
+    stages {
+        stage('Example') {
+            steps {
+                echo 'Hello World'
 
-      }
-      steps {
-        sh 'python -m py_compile sources/add2vals.py sources/calc.py'
-      }
+                script {
+                    def browsers = ['chrome', 'firefox']
+                    for (int i = 0; i < browsers.size(); ++i) {
+                        echo "Testing the ${browsers[i]} browser"
+                    }
+                }
+            }
+        }
     }
-    stage('Test') {
-      agent {
-        docker {
-          image 'qnib/pytest'
-        }
-
-      }
-      post {
-        always {
-          junit 'test-reports/results.xml'
-
-        }
-
-      }
-      steps {
-        sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
-      }
-    }
-    stage('Deliver') {
-      agent {
-        docker {
-          image 'cdrx/pyinstaller-linux:python2'
-        }
-
-      }
-      post {
-        success {
-          archiveArtifacts 'dist/add2vals'
-
-        }
-
-      }
-      steps {
-        sh 'pyinstaller --onefile sources/add2vals.py'
-      }
-    }
-  }
 }
