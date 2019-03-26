@@ -12,6 +12,7 @@ pipeline {
         sh 'python -m py_compile sources/add2vals.py sources/calc.py'
       }
     }
+    parallel {
     stage('Teste') {
       when {
                 branch 'master'
@@ -32,6 +33,29 @@ pipeline {
       steps {
         sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
       }
+    }
+    
+    stage('Teste 1') {
+      when {
+                branch 'teste'
+            }
+      agent {
+        docker {
+          image 'qnib/pytest'
+        }
+
+      }
+      post {
+        always {
+          junit 'test-reports/results.xml'
+
+        }
+
+      }
+      steps {
+        sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calcs.py'
+      }
+    }
     }
     stage('Entrega') {
       agent {
