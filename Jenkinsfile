@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Teste') {
       when {
-                branch 'production'
+                branch 'master'
             }
       agent {
         docker {
