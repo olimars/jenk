@@ -12,9 +12,8 @@ pipeline {
         sh 'python -m py_compile sources/add2vals.py sources/calc.py'
       }
     }
-  }
-    failFast true
-    parallel {
+  
+   
     stage('Teste') {
       when {
                 branch 'master'
@@ -58,7 +57,7 @@ pipeline {
         sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calcs.py'
       }
     }
-    }
+    
     stage('Entrega') {
       agent {
         docker {
