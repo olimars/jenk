@@ -48,7 +48,7 @@ pipeline {
       }
       steps {
         sh 'pyinstaller --onefile sources/add2vals.py'
-        input "Tudo parece ok?"
+        input "Podemos fazer entrega?"
       }
       
       
