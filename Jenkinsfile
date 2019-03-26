@@ -35,6 +35,8 @@ pipeline {
         docker {
           image 'cdrx/pyinstaller-linux:python2'
         }
+        
+        
 
       }
       post {
@@ -47,6 +49,10 @@ pipeline {
       steps {
         sh 'pyinstaller --onefile sources/add2vals.py'
       }
+      
+      steps {
+                input "Tudo parece ok?"
+            }
     }
   }
 }
