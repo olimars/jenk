@@ -13,6 +13,9 @@ pipeline {
       }
     }
     stage('Teste') {
+      when {
+                branch 'production'
+            }
       agent {
         docker {
           image 'qnib/pytest'
