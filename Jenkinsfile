@@ -69,7 +69,7 @@ pipeline {
         sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calcs.py'
       }
     }
-    }
+    
     stage('Entrega') {
       agent {
         docker {
@@ -94,4 +94,5 @@ pipeline {
       
     }
   }
+}
 
