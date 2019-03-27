@@ -34,6 +34,7 @@ pipeline {
         docker {
           image 'qnib/pytest'
         }
+      }
 
       }
       post {
