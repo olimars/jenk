@@ -77,11 +77,17 @@ pipeline {
       }
       steps {
         sh 'pyinstaller --onefile sources/add2vals.py'
-        input "Podemos fazer entrega?"
+       
       }
       
       
     }
   }
+  post { 
+        always { 
+            echo 'I will always say Hello again!'
+        }
+    }
+
 }
 
