@@ -42,6 +42,7 @@ pipeline {
                 branch 'teste'
             }
       agent {
+        //comentario
         docker {
           image 'qnib/pytest'
         }
