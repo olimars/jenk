@@ -14,7 +14,7 @@ pipeline {
       }
     }
     //comentario
-    stage('Teste') {
+    stage('Teste') { //@id
       when {
                 branch 'master'
             }
