@@ -5,7 +5,7 @@ pipeline {
     stage('Build') {
       agent {
         docker {
-          images 'python:2-alpine'
+          image 'python:2-alpine'
         }
 
       }
@@ -38,9 +38,7 @@ pipeline {
     }
     
     stage('Teste 1') {
-      when {
-                branch 'teste'
-            }
+      
       agent {
         //comentario
         docker {
@@ -58,6 +56,9 @@ pipeline {
       steps {
         sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calcs.py'
       }
+        when {
+                branch 'teste'
+            }
     }
     
     stage('Entrega') {
