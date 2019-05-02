@@ -15,9 +15,7 @@ pipeline {
     }
     //comentario
     stage('Teste') { //@id
-      when {
-                branch 'master'
-            }
+      
       agent {
         docker {
           image 'qnib/pytest'
@@ -30,6 +28,9 @@ pipeline {
           junit 'test-reports/results.xml'
 
         }
+        when {
+                branch 'master'
+            }
 
       }
       steps {
